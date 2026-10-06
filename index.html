@@ -16,7 +16,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="hero.webp" type="image/webp" media="(min-width: 601px)" fetchpriority="high">
+<link rel="preload" as="image" href="hero-mobile.webp" type="image/webp" media="(max-width: 600px)" fetchpriority="high">
+<link rel="preload" as="image" href="logo.webp" type="image/webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap"></noscript>
 <style>
   :root {
     --ink: #0a0a0b;
@@ -104,16 +108,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:
       linear-gradient(90deg, rgba(10,10,11,.98) 0%, rgba(10,10,11,.93) 38%, rgba(10,10,11,.56) 68%, rgba(10,10,11,.25) 100%),
       linear-gradient(180deg, rgba(10,10,11,.08) 55%, var(--ink) 100%),
-      url("hero-trabalhista-v2.png") 68% center / cover no-repeat;
+      url("hero.webp") 68% center / cover no-repeat;
   }
   .hero .wrap { position: relative; }
   .hero .wrap > div { max-width: 760px; }
   .hero-logo { width: 96px; height: auto; }
   .hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 36px 0 24px; }
   .hero .lead { font-size: clamp(1.08rem, 1.5vw, 1.25rem); color: #cfcfd3; max-width: 46ch; }
+  .trust { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: #cfcfd3; }
+  .trust li { display: inline-flex; align-items: center; gap: 8px; }
+  .trust svg { width: 16px; height: 16px; flex: none; color: var(--white); }
 
   /* ---------- Seções ---------- */
   section { position: relative; }
+  .sec { content-visibility: auto; contain-intrinsic-size: auto 900px; }
   .sec { padding: 120px 0; }
   .light { background: var(--paper); color: var(--ink); }
   .light h2 em, .light h3 em { color: var(--muted-light); }
@@ -297,7 +305,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background:
         linear-gradient(90deg, rgba(10,10,11,.94) 0%, rgba(10,10,11,.87) 100%),
         linear-gradient(180deg, transparent 40%, var(--ink) 100%),
-        url("hero-trabalhista-v2.png") 72% center / cover no-repeat;
+        url("hero-mobile.webp") 72% center / cover no-repeat;
     }
     .hero { text-align: center; }
     .hero .wrap > div { margin: 0 auto; }
@@ -305,6 +313,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero h1 { font-size: clamp(1.45rem, 6.4vw, 1.75rem); line-height: 1.2; margin: 28px 0 18px; }
     .hero .lead { font-size: .875rem; line-height: 1.55; margin: 0 auto; max-width: 34ch; }
     .hero .cta-row { align-items: center; margin-top: 32px; }
+    .trust { justify-content: center; font-size: 13px; gap: 8px 16px; }
     .marquee-item { font-size: 13px; padding: 10px 0; margin-right: 32px; }
     .marquee-item svg { width: 16px; height: 16px; }
     .sit-grid { gap: 12px; margin-top: 40px; }
@@ -365,11 +374,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero">
     <div class="wrap">
       <div>
-        <img class="hero-logo rv" src="logo.png" alt="Bathe Advocacia" width="244" height="276">
-        <h1 class="rv" style="--d:.08s">FGTS não depositado, irregularidades no emprego ou <em>demissão após representar os trabalhadores?</em></h1>
-        <p class="lead rv" style="--d:.16s">Fale com um advogado trabalhista para entender <strong>seus direitos</strong> e avaliar as possibilidades de <strong>rescisão indireta</strong>, <strong>regularização do FGTS</strong> ou <strong>questionamento da demissão</strong>, conforme seu caso.</p>
-        <div class="cta-row rv" style="--d:.24s">
-          <a class="btn wa-link" data-loc="hero" data-sit="geral" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>        </div>
+        <img class="hero-logo" src="logo.webp" fetchpriority="high" alt="Bathe Advocacia" width="244" height="276">
+        <h1>FGTS não depositado, irregularidades no emprego ou <em>demissão após representar os trabalhadores?</em></h1>
+        <p class="lead">Converse com um advogado trabalhista, entenda <strong>seus direitos</strong> e veja quais caminhos existem para o seu caso: <strong>rescisão indireta</strong>, <strong>regularização do FGTS</strong> ou <strong>questionamento da demissão</strong>.</p>
+        <div class="cta-row">
+          <a class="btn wa-link" data-loc="hero" data-sit="geral" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <!-- PENDENTE: validar com o escritório a menção a sigilo -->
+        <ul class="trust">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Conversa sigilosa</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Fale do seu jeito</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sem compromisso de contratar</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -381,7 +397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-scale"/></svg>Advocacia trabalhista</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-briefcase"/></svg>Rescisão indireta</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-wallet"/></svg>FGTS não recolhido</span>
-        <span class="marquee-item"><svg aria-hidden="true"><use href="#i-people"/></svg>Desligamento de representantes</span>
+        <span class="marquee-item"><svg aria-hidden="true"><use href="#i-people"/></svg>Demissão de representantes</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-pin"/></svg>Santo Amaro · São Paulo</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-map"/></svg>Raio de até 200 km</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-chat"/></svg>Primeiro contato pelo WhatsApp</span>
@@ -390,7 +406,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-scale"/></svg>Advocacia trabalhista</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-briefcase"/></svg>Rescisão indireta</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-wallet"/></svg>FGTS não recolhido</span>
-        <span class="marquee-item"><svg aria-hidden="true"><use href="#i-people"/></svg>Desligamento de representantes</span>
+        <span class="marquee-item"><svg aria-hidden="true"><use href="#i-people"/></svg>Demissão de representantes</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-pin"/></svg>Santo Amaro · São Paulo</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-map"/></svg>Raio de até 200 km</span>
         <span class="marquee-item"><svg aria-hidden="true"><use href="#i-chat"/></svg>Primeiro contato pelo WhatsApp</span>
@@ -404,31 +420,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sec-head center rv" style="margin:0 auto">
         <span class="eyebrow"><svg aria-hidden="true"><use href="#i-target"/></svg>Escolha o seu caso</span>
         <h2>Qual dessas situações <em>se parece com a&nbsp;sua?</em></h2>
-        <p>Escolha a opção mais próxima do seu caso e <strong>conte sua situação direto para a equipe</strong> pelo&nbsp;WhatsApp.</p>
+        <p>Escolha a mais próxima e conte o que está acontecendo. <strong>Não precisa saber termos&nbsp;jurídicos.</strong></p>
       </div>
 
+      <!-- PENDENTE: exemplos dos cards devem ser validados pelo advogado responsável -->
       <div class="sit-grid">
         <article class="sit rv" id="rescisao">
           <div class="sit-top"><span class="sit-icon"><svg aria-hidden="true"><use href="#i-briefcase"/></svg></span><span class="sit-tag">Rescisão indireta</span></div>
-          <h3>Ainda estou empregado, mas a empresa comete irregularidades</h3>
-          <p><strong>Antes de pedir demissão</strong>, entenda se existe outra alternativa. O advogado verifica se o que você vive no trabalho pode fundamentar uma rescisão indireta e explica as consequências de cada caminho.</p>
-          <q>Existe uma alternativa ao pedido de demissão?</q>
+          <h3>Ainda trabalho na empresa, mas ela não cumpre o que deve</h3>
+          <p><strong>Salário atrasado, FGTS sem depósito, humilhações, horas extras sem pagamento</strong> ou trabalho diferente do combinado. Antes de pedir demissão, entenda se existe outra saída.</p>
+          <q>Tenho que pedir demissão para sair?</q>
           <a class="btn wa-link" data-loc="card" data-sit="rescisao_indireta" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="sit rv" id="fgts" style="--d:.06s">
           <div class="sit-top"><span class="sit-icon"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="sit-tag">FGTS não recolhido</span></div>
-          <h3>Consultei meu FGTS e faltam depósitos</h3>
-          <p>Se você encontrou <strong>depósitos ausentes ou irregulares</strong>, o advogado analisa os períodos em aberto e explica as possibilidades de regularização no seu caso.</p>
-          <q>Como posso buscar a regularização?</q>
+          <h3>Abri o app do FGTS e faltam depósitos</h3>
+          <p>Meses sem depósito, <strong>valores menores que o devido</strong> ou depósitos que pararam de aparecer. Entenda o que pode ser feito para regularizar.</p>
+          <q>A empresa pode deixar de depositar meu FGTS?</q>
           <a class="btn wa-link" data-loc="card" data-sit="fgts" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="sit rv" id="representante" style="--d:.12s">
           <div class="sit-top"><span class="sit-icon"><svg aria-hidden="true"><use href="#i-people"/></svg></span><span class="sit-tag">Representantes</span></div>
-          <h3>Fui demitido depois de representar os trabalhadores</h3>
-          <p>Se você exercia uma função de representação ou fazia parte de uma comissão de trabalhadores, o advogado identifica a função exercida e avalia <strong>se a demissão foi regular</strong> e se havia proteção legal.</p>
-          <q>Essa demissão poderia ter acontecido?</q>
+          <h3>Fui demitido quando era da CIPA, da comissão ou representante</h3>
+          <p>Em alguns casos, <strong>a lei protege o representante dos trabalhadores contra a demissão</strong>. Vale verificar se isso se aplica a você.</p>
+          <q>Eles podiam ter me mandado embora?</q>
           <a class="btn wa-link" data-loc="card" data-sit="representante" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
       </div>
@@ -438,24 +455,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="solution-head rv">
             <span class="eyebrow"><svg aria-hidden="true"><use href="#i-alert"/></svg>Antes de decidir</span>
             <h3>Decisões sobre o seu emprego <em>afetam a sua renda.</em></h3>
-            <p><strong>Agir sem orientação</strong> pode trazer consequências que você ainda não conhece:</p>
+            <p>Antes de qualquer passo, <strong>vale saber o que muda</strong> em cada caminho:</p>
           </div>
           <div class="gain-list">
-            <div class="gain rv"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Pedir demissão sem conhecer as consequências</b> pode mudar o que você recebe quando sai da empresa.</p></div>
-            <div class="gain rv" style="--d:.08s"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Deixar depósitos de FGTS pendentes</b> significa continuar sem saber o que pode ser feito para regularizar.</p></div>
-            <div class="gain rv" style="--d:.16s"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Não avaliar o desligamento</b> depois de exercer representação significa ficar sem resposta sobre a regularidade da demissão.</p></div>
+            <div class="gain rv"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Quem pede demissão, em regra,</b> não saca o FGTS, não recebe a multa de 40% e não tem direito ao seguro-desemprego.</p></div>
+            <div class="gain rv" style="--d:.08s"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Depositar o FGTS é obrigação da empresa.</b> Saber quais meses faltam é o primeiro passo para buscar a regularização.</p></div>
+            <div class="gain rv" style="--d:.16s"><span class="gain-icon"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p><b>Representantes demitidos</b> podem ter proteção no emprego prevista em lei. Depende da função e de como a demissão aconteceu.</p></div>
           </div>
         </div>
       </div>
 
       <div class="wake">
         <div class="wake-card rv">
-          <span class="tag">Com orientação</span>
-          Você entende <b>seus direitos</b>, os <b>documentos necessários</b> e as <b>medidas possíveis</b> no seu caso.
+          <span class="tag">Conversa sigilosa</span>
+          O que você conta ao advogado <b>fica entre vocês</b>. A empresa não é avisada do seu contato.
         </div>
         <div class="wake-card rv" style="--d:.08s">
           <span class="tag">A decisão é sua</span>
-          Mas tomada com informação, depois de conhecer os caminhos jurídicos disponíveis.
+          Conversar <b>não obriga a contratar</b>. Você entende o seu caso e decide depois, com calma.
         </div>
       </div>
 
@@ -472,8 +489,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap center">
       <div class="sec-head rv">
         <span class="eyebrow"><svg aria-hidden="true"><use href="#i-search"/></svg>Análise individual</span>
-        <h2>O que o advogado <em>avalia</em> em cada caso</h2>
-        <p>O relato do trabalhador e os documentos do vínculo de emprego são analisados para identificar possíveis irregularidades e explicar <strong>os caminhos jurídicos disponíveis</strong>.</p>
+        <h2>O que o advogado <em>analisa</em> no seu caso</h2>
+        <p>Você conta o que está acontecendo, mostra os documentos que tiver e recebe uma explicação clara do que a lei prevê <strong>para a sua situação</strong>.</p>
       </div>
 
       <div class="steps" style="text-align:left">
@@ -481,32 +498,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="step-top"><span class="step-icon"><svg aria-hidden="true"><use href="#i-briefcase"/></svg></span><span class="step-num">01</span></div>
           <h3>Rescisão indireta</h3>
           <ul>
-            <li>Escuta o seu relato e analisa os documentos do vínculo.</li>
-            <li>Verifica se as situações vividas na empresa podem fundamentar a rescisão indireta.</li>
-            <li>Explica as consequências de um pedido de demissão, para você comparar os caminhos.</li>
+            <li>Ouve o que está acontecendo no seu trabalho.</li>
+            <li>Verifica se a sua situação permite a rescisão indireta.</li>
+            <li>Compara com o pedido de demissão, para você saber o que muda.</li>
           </ul>
         </div>
         <div class="step rv" style="--d:.06s">
           <div class="step-top"><span class="step-icon"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="step-num">02</span></div>
           <h3>FGTS não recolhido</h3>
           <ul>
-            <li>Analisa os depósitos de FGTS ausentes ou irregulares.</li>
-            <li>Explica as possibilidades de regularização.</li>
-            <li>Orienta sobre as medidas cabíveis no seu caso.</li>
+            <li>Confere quais meses e valores estão faltando.</li>
+            <li>Explica como a regularização pode ser buscada.</li>
+            <li>Orienta os próximos passos.</li>
           </ul>
         </div>
         <div class="step rv" style="--d:.12s">
           <div class="step-top"><span class="step-icon"><svg aria-hidden="true"><use href="#i-people"/></svg></span><span class="step-num">03</span></div>
           <h3>Representantes dos trabalhadores</h3>
           <ul>
-            <li>Identifica a função de representação exercida ou a comissão de que você participava.</li>
-            <li>Avalia a regularidade da demissão.</li>
-            <li>Verifica uma eventual proteção legal aplicável.</li>
+            <li>Confirma qual era a sua função: CIPA, comissão ou outra representação.</li>
+            <li>Verifica se havia proteção contra a demissão.</li>
+            <li>Explica o que pode ser questionado.</li>
           </ul>
         </div>
       </div>
 
-      <p class="sec-foot rv">A orientação leva em conta <strong>as particularidades de cada caso</strong>. Não há garantia de resultado.</p>
+      <p class="sec-foot rv">Cada caso é analisado <strong>individualmente</strong>.</p>
 
       <div class="cta-row rv">
         <a class="btn wa-link" data-loc="avaliacao" data-sit="geral" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -521,30 +538,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="sec-head rv">
           <span class="eyebrow"><svg aria-hidden="true"><use href="#i-steps"/></svg>Passo a passo</span>
           <h2>Como funciona o <em>atendimento</em></h2>
-          <p>Do <strong>primeiro contato pelo WhatsApp</strong> até a <strong>avaliação jurídica</strong> do seu caso.</p>
+          <p>Do <strong>primeiro contato pelo WhatsApp</strong> até a análise do seu caso, <strong>sem complicação</strong>.</p>
         </div>
         <div class="cta-row rv">
           <a class="btn wa-link" data-loc="como_funciona" data-sit="geral" href="https://wa.me/5511994537748">Fale com um advogado<svg class="cta-arrow" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
       <div>
+        <!-- PENDENTE: confirmar quem responde no WhatsApp (advogado ou equipe) -->
         <ol class="why-list">
-          <li class="rv"><span class="ck">1</span><div><strong>Você chama no WhatsApp</strong>Clique em “Fale com um advogado” e conte brevemente a sua situação.</div></li>
-          <li class="rv" style="--d:.05s"><span class="ck">2</span><div><strong>A equipe coleta as primeiras informações</strong>Seu vínculo de trabalho, a irregularidade, sua cidade e os documentos que você tem.</div></li>
-          <li class="rv" style="--d:.1s"><span class="ck">3</span><div><strong>Você recebe orientação sobre os próximos passos</strong>A equipe explica como seguir para a avaliação jurídica do caso.</div></li>
-          <li class="rv" style="--d:.15s"><span class="ck">4</span><div><strong>Avaliação e representação</strong>O advogado apresenta os caminhos jurídicos disponíveis. Uma eventual representação depende da avaliação e da contratação.</div></li>
+          <li class="rv"><span class="ck">1</span><div><strong>Você manda uma mensagem</strong>Clique no botão e conte o que está acontecendo, do seu jeito.</div></li>
+          <li class="rv" style="--d:.05s"><span class="ck">2</span><div><strong>O escritório entende a sua situação</strong>Perguntamos sobre o seu trabalho, o problema, a sua cidade e os documentos que você tem.</div></li>
+          <li class="rv" style="--d:.1s"><span class="ck">3</span><div><strong>Você recebe a orientação</strong>Explicamos os próximos passos para a análise jurídica do seu caso.</div></li>
+          <li class="rv" style="--d:.15s"><span class="ck">4</span><div><strong>Você decide</strong>Com o caso analisado, o advogado apresenta os caminhos possíveis. A contratação só acontece se você quiser.</div></li>
         </ol>
 
         <!-- PENDENTE: substituir pela lista oficial de documentos do escritório -->
         <div class="docs rv">
           <h3>O que é bom ter em mãos</h3>
           <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Informações sobre o seu vínculo de trabalho (empresa, função, tempo de serviço)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>O que está acontecendo, ou aconteceu, de irregular</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Nome da empresa, sua função e há quanto tempo trabalha (ou trabalhou) lá</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>O que está acontecendo, contado do seu jeito</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>A cidade onde você mora ou trabalha</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Os documentos que você já tiver</li>
           </ul>
-          <p class="small">Não tem todos os documentos? <strong>Tudo bem.</strong> A equipe orienta você sobre o que é necessário.</p>
+          <p class="small">Não tem documento nenhum? <strong>Tudo bem.</strong> Você pode começar só contando a sua situação.</p>
         </div>
       </div>
     </div>
@@ -554,7 +572,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="sec regiao">
     <div class="wrap">
       <div class="map-media rv">
-        <img src="abrangencia-mapa.png" alt="Mapa da região atendida a partir de Santo Amaro, em São Paulo" width="1024" height="1024" loading="lazy" decoding="async">
+        <img src="abrangencia-mapa.webp" alt="Mapa da região atendida a partir de Santo Amaro, em São Paulo" width="800" height="800" loading="lazy" decoding="async">
       </div>
       <div>
         <div class="rv">
@@ -563,7 +581,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="closing rv" style="--d:.08s">
           <p>O escritório fica em <b>Santo Amaro, São Paulo</b>, e atende cidades em um <b>raio de até 200 km</b>.</p>
-          <p>O primeiro contato é pelo WhatsApp e, <b>conforme o caso</b>, o atendimento pode ser virtual.</p>
+          <p>Você pode começar <b>pelo WhatsApp, de onde estiver</b>. Conforme o caso, o atendimento continua online.</p>
         </div>
         <div class="cities rv" style="--d:.12s">
           <span class="city main">Santo Amaro · SP</span>
@@ -595,33 +613,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="faq-list">
         <details class="faq-item rv" open>
           <summary><span>Se eu sair da empresa, vou perder meus direitos?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
-          <div class="faq-a"><p>Depende de como a saída acontece. Pedido de demissão e rescisão indireta <strong>têm consequências diferentes</strong>. Por isso é importante entender o seu caso antes de decidir. O advogado explica o que muda em cada caminho.</p></div>
+          <div class="faq-a"><p>Depende de como você sai. <strong>Quem pede demissão, em regra, abre mão</strong> do saque do FGTS, da multa de 40% e do seguro-desemprego. Na rescisão indireta, quando reconhecida, a saída é tratada como se a empresa tivesse demitido. Por isso vale entender o seu caso antes de decidir.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Existe uma alternativa ao pedido de demissão?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
-          <div class="faq-a"><p>Em algumas situações de irregularidade cometida pela empresa, a lei prevê a <strong>rescisão indireta</strong>. O advogado avalia se o que você está vivendo pode fundamentar essa medida.</p></div>
+          <div class="faq-a"><p>Sim. Quando a empresa descumpre obrigações importantes, como atrasar salários ou não depositar o FGTS, a lei prevê a <strong>rescisão indireta</strong>. O advogado avalia se a sua situação se encaixa.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Como vou me manter financeiramente se deixar o emprego?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
-          <div class="faq-a"><p>É uma preocupação legítima e deve fazer parte da decisão. Na avaliação, o advogado explica os caminhos possíveis e o impacto de cada um, para você <strong>decidir com segurança</strong>.</p></div>
+          <div class="faq-a"><p>É uma preocupação justa. Em algumas situações, <strong>a lei permite continuar trabalhando</strong> enquanto a rescisão indireta é discutida. O advogado explica se isso vale para o seu caso e o impacto de cada caminho na sua renda.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Faltam depósitos no meu FGTS. O que posso fazer?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
-          <div class="faq-a"><p>O advogado analisa os depósitos ausentes ou irregulares e orienta sobre as <strong>possibilidades de regularização</strong> no seu caso.</p></div>
+          <div class="faq-a"><p>Primeiro, confira o extrato no aplicativo do FGTS. Com ele em mãos, o advogado verifica os meses em aberto e orienta sobre as <strong>possibilidades de regularização</strong>.</p></div>
         </details>
         <details class="faq-item rv">
-          <summary><span>Eu exercia uma função de representação. Tinha proteção contra a demissão?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
-          <div class="faq-a"><p>Depende da <strong>função que você exercia</strong> e das circunstâncias do desligamento. O advogado identifica a função e avalia a regularidade da demissão e uma eventual proteção legal.</p></div>
+          <summary><span>Eu era da CIPA ou representante. Tinha proteção contra a demissão?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a"><p>Alguns representantes têm <strong>proteção contra a demissão prevista em lei</strong>, como membros eleitos da CIPA e de comissões de representantes dos empregados. Depende da função e de como o desligamento aconteceu.</p></div>
+        </details>
+        <details class="faq-item rv">
+          <summary><span>A empresa vai saber que procurei um advogado?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
+          <!-- PENDENTE: validar com o escritório -->
+          <div class="faq-a"><p>Não. A conversa com o advogado é <strong>sigilosa</strong>. A empresa não é avisada do seu contato.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Posso começar o atendimento sem ir ao escritório?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
           <!-- PENDENTE: confirmar com o escritório se o atendimento pode ser 100% virtual -->
-          <div class="faq-a"><p>Sim. <strong>O primeiro contato é pelo WhatsApp</strong> e, dependendo do caso, o atendimento pode continuar virtualmente.</p></div>
+          <div class="faq-a"><p>Sim. <strong>Você começa pelo WhatsApp</strong>, de onde estiver. Conforme o caso, o atendimento continua online.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Quais documentos preciso apresentar?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
           <!-- PENDENTE: lista oficial de documentos por situação -->
-          <div class="faq-a"><p>Tenha em mãos o que você já tiver sobre o seu vínculo de trabalho. A equipe <strong>orienta você sobre os documentos necessários</strong> para o seu caso.</p></div>
+          <div class="faq-a"><p>Para começar, nenhum. Conte a sua situação e você será <strong>orientado sobre os documentos necessários</strong> para o seu caso.</p></div>
         </details>
         <details class="faq-item rv">
           <summary><span>Quanto custa o atendimento?</span><span class="faq-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span></summary>
@@ -638,7 +661,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <img class="footer-logo" src="logo.png" alt="Bathe Advocacia" width="244" height="276">
+        <img class="footer-logo" src="logo.webp" loading="lazy" decoding="async" alt="Bathe Advocacia" width="244" height="276">
       </div>
       <div>
         <h4>Contato</h4>
@@ -667,9 +690,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var PHONE = '5511994537748';
     var MSG = {
       geral: 'Olá! Vim pelo site e gostaria de falar com um advogado trabalhista sobre a minha situação.',
-      rescisao_indireta: 'Olá! Ainda estou empregado(a), a empresa está cometendo irregularidades e quero entender se existe alternativa ao pedido de demissão.',
-      fgts: 'Olá! Consultei meu FGTS, faltam depósitos e quero saber como buscar a regularização.',
-      representante: 'Olá! Fui demitido(a) depois de exercer uma função de representação dos trabalhadores e quero avaliar a demissão.'
+      rescisao_indireta: 'Olá! Ainda trabalho na empresa, mas ela não está cumprindo o que deve. Quero entender minhas opções antes de pedir demissão.',
+      fgts: 'Olá! Vi no aplicativo que faltam depósitos no meu FGTS e quero saber o que posso fazer.',
+      representante: 'Olá! Fui demitido(a) quando era representante dos trabalhadores (CIPA ou comissão) e quero entender se a demissão foi correta.'
     };
     window.dataLayer = window.dataLayer || [];
     document.querySelectorAll('.wa-link').forEach(function(a){
